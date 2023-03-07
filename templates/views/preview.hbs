@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Preview</title>
+    {{>headLink}}
+
+    <style>
+         li{ 
+           text-decoration: none; 
+           list-style: none;
+           margin-bottom: 1rem;
+         } 
+         body{ 
+            background : linear-gradient(aqua,rgb(143, 143, 217));
+            background : linear-gradient(45deg ,rgb(143, 143, 217),aqua,rgb(143, 143, 217));
+         }
+         .container{
+            height:90vh;
+            width : 80vw;
+            display:flex;
+            justify-content:center;
+            flex-direction: column;
+            margin-top : 1.5rem;
+            padding : 4rem;
+            border : 0.2rem solid black;
+            box-shadow : 0.35rem 0.35rem black;
+         }
+         .btn{
+            font-weight:bold;
+            padding : 0.5rem 5rem 0.5rem 5rem;
+            margin-top : 2rem;
+         }
+         .btn:hover{
+            border : 0.2rem solid white;
+         }
+         li:nth-child(odd){
+            color : black;
+            background-color: white;
+         }
+         li:nth-child(even){
+            color:black;
+            background-color: rgb(212, 212, 143);
+         }
+         li:hover,a:hover{
+            text-shadow: 0.1rem 0.1rem yellow;
+         }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      {{#each array}}
+        <li><h4>{{array}}{{this}}</h4></li>
+      {{/each}}
+      <a href="/" type="button" class="btn btn-lg btn-dark">Go Home</a>
+    </div>
+
+{{>footer}}
+
+  </body>
+</html>
+

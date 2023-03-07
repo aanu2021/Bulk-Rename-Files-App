@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Rename App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .heading{
+            font-family: 'Roboto Slab', serif;
+            font-size : 3.5rem;
+            margin-left : 5rem;
+            text-shadow : 0.15rem 0.15rem yellow;
+        }
+
+        form {
+            border: 0.5rem solid black;
+            width: 60%;
+            padding: 2rem;
+            background: linear-gradient(rgb(78, 149, 171), rgb(153, 233, 233));
+        }
+
+        input {
+            border: 0.2rem solid black;
+            padding: 0.8rem;
+            background: linear-gradient(rgb(212, 212, 167), rgb(0, 162, 255));
+            font-size: 1rem;
+        }
+
+        .btn {
+            width: 15rem;
+            font-size: 1.3rem;
+            border-radius: 10%;
+        }
+
+        input:hover {
+            background-color: rgb(202, 244, 244);
+            border: 0.15rem solid white;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            background-color: rgb(202, 244, 244);
+        }
+        label{
+            font-family: 'Roboto Slab', serif;
+            text-shadow : 0.03rem 0.03rem white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="heading">RENAME-X</h1>
+    <form method="post" action="/rename">
+        <table>
+            <tr>
+                <td><label for="folderName">Enter full path of your Folder </label></td>
+                <td> <input type="text" name="folderName" id="folderName" size="40" autocomplete="on"><br>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="replaceThis">Enter the name of the file you want to replace </label></td>
+                <td><input type="text" name="replaceThis" id="replaceThis" size="40" autocomplete="on"><br></td>
+            </tr>
+            <tr>
+                <td><label for="replaceWith">Enter the name of the file with whom you want to replace </label></td>
+                <td><input type="text" name="replaceWith" id="replaceWith" size="40" autocomplete="on"><br><br></td>
+            </tr>
+            <tr style="text-align:left">
+                <td><label for="preview">Preview Changes</label>
+                    <input type="radio" id="preview" name="option" value="option1"><br><br>
+                </td>
+                <td><label for="rename">Rename Files</label>
+                    <input type="radio" id="rename" name="option" value="option2">
+                </td>
+            </tr>
+            <tr style="text-align:center">
+                <td colspan="2"><input type="submit" class="btn" value="Click"></td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+
+</html>
