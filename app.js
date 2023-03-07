@@ -4,17 +4,19 @@ const app = express();
 const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
-require('dotenv').config();
+require("dotenv").config();
 const port = process.env.PORT || 3000;
 
-const staticPath = path.join(__dirname,"/public");
-const templatePath = path.join(__dirname,"/templates");
-const partialsPath = path.join(__dirname,"/templates/partials");
+const staticPath = path.join(__dirname, "public");
+const templatePath = path.join(__dirname, "templates");
+const partialsPath = path.join(__dirname, "templates/partials");
+
+// console.log(staticPath,templatePath,partialsPath);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set("view engine","hbs");
-app.set("views",templatePath);
+app.set("view engine", "hbs");
+app.set("views", templatePath);
 hbs.registerPartials(partialsPath);
 app.use(express.static(staticPath));
 
@@ -31,10 +33,10 @@ app.post("/rename", (req, res) => {
   const optionChosen = req.body.option;
   let preview = true;
 
-//   console.log(folder);
-//   console.log(replaceThis);
-//   console.log(replaceWith);
-//   console.log(optionChosen);
+  //   console.log(folder);
+  //   console.log(replaceThis);
+  //   console.log(replaceWith);
+  //   console.log(optionChosen);
 
   if (optionChosen === "option1") {
     preview = true;
@@ -44,11 +46,13 @@ app.post("/rename", (req, res) => {
 
   let previewArr = [];
 
-//   console.log(preview);
+  //   console.log(preview);
 
-  try {
-    fs.readdir(folder, (err, data) => {
-      // console.log(data.length);
+  fs.readdir(folder, (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
       for (let item of data) {
         // const item = data[index];
         const oldFile = path.join(folder, item);
@@ -63,19 +67,19 @@ app.post("/rename", (req, res) => {
           });
         } else {
           const oldName = path.parse(item).name;
-          if (oldName.substring(0,replaceThis.length) === replaceThis) {
+          if (oldName.substring(0, replaceThis.length) === replaceThis) {
             console.log(oldFile + " will be renamed to " + newFile);
             previewArr.push(`${oldFile} will be renamed to ${newFile}`);
           }
         }
       }
-    });
-  } catch (err) {
-    console.log(err);
-  }
+    }
+  });
 
   if (preview) {
-    res.render(path.join(__dirname, "templates/views/preview.hbs"),{array : previewArr});
+    res.render(path.join(__dirname, "templates/views/preview.hbs"), {
+      array: previewArr,
+    });
   } else {
     res.render(path.join(__dirname, "templates/views/rename.hbs"));
   }
