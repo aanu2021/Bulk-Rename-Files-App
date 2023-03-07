@@ -7,9 +7,9 @@ const bodyParser = require("body-parser");
 require('dotenv').config();
 const port = process.env.PORT || 3000;
 
-const staticPath = path.join(__dirname,"public");
-const templatePath = path.join(__dirname,"templates");
-const partialsPath = path.join(__dirname,"templates/partials");
+const staticPath = path.join(__dirname,"/public");
+const templatePath = path.join(__dirname,"/templates");
+const partialsPath = path.join(__dirname,"/templates/partials");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -48,9 +48,9 @@ app.post("/rename", (req, res) => {
 
   try {
     fs.readdir(folder, (err, data) => {
-
-      for (let index = 0; index < data.length; index++) {
-        const item = data[index];
+      // console.log(data.length);
+      for (let item of data) {
+        // const item = data[index];
         const oldFile = path.join(folder, item);
         const currChange = item.replaceAll(replaceThis, replaceWith);
         const newFile = path.join(folder, currChange);
